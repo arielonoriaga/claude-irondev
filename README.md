@@ -1,4 +1,4 @@
-# solid-dev
+# claude-irondev
 
 Two Claude Code skills for writing rock-solid software.
 
@@ -41,9 +41,9 @@ You (orchestrator) write zero code. Subagents do the work.
 Copy skills into your Claude Code skills directory:
 
 ```bash
-git clone git@github.com:arielonoriaga/solid-dev.git
-cp -r solid-dev/master-review ~/.claude/skills/
-cp -r solid-dev/solid-dev ~/.claude/skills/
+git clone git@github.com:arielonoriaga/claude-irondev.git
+cp -r claude-irondev/master-review ~/.claude/skills/
+cp -r claude-irondev/solid-dev ~/.claude/skills/
 ```
 
 ## Usage
