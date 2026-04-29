@@ -1,16 +1,25 @@
-# claude-irondev
+<div align="center">
 
-**Stop shipping code that breaks under pressure. Start shipping code that lasts.**
+# ⚙️ claude-irondev
 
-Two Claude Code skills that encode 11 foundational engineering books into your development workflow — review with master-level depth, ship with built-in quality gates.
+**Stop shipping code that breaks under pressure.**
+
+Two [Claude Code](https://claude.ai/code) skills that encode 11 foundational engineering books into your dev workflow —
+master-level code review and a fully orchestrated, self-reviewing dev cycle.
+
+[![Claude Code](https://img.shields.io/badge/Claude%20Code-compatible-black?logo=anthropic&logoColor=white)](https://claude.ai/code)
+[![Skills](https://img.shields.io/badge/skills-2-blue)](#whats-inside)
+[![Books](https://img.shields.io/badge/knowledge%20base-11%20books-orange)](#knowledge-base)
+
+</div>
 
 ---
 
 ## Why irondev?
 
-Most AI-generated code passes the happy path and fails everything else. Broken invariants, leaky abstractions, unclosed resources, missed edge cases — things a seasoned engineer catches in review.
+Most AI-generated code passes the happy path and fails everything else — broken invariants, leaky abstractions, unclosed resources, edge cases never considered.
 
-`irondev` makes that senior engineer part of every cycle, automatically.
+**`irondev` makes a senior engineer part of every cycle, automatically.**
 
 ---
 
@@ -18,34 +27,41 @@ Most AI-generated code passes the happy path and fails everything else. Broken i
 
 ### `/irondev-review` — 5-Lens Code Review
 
-Not a linter. Not a style check. A systematic review through five lenses that each catch different failure modes.
+> Not a linter. Not a style check. A systematic review through five lenses that each catch different failure modes.
 
-| Lens | Source | Catches |
-|------|--------|---------|
-| Problem Correctness | Art of Problem Solving | Wrong algorithms, broken invariants, missed boundaries |
-| Abstraction Quality | SICP | Leaky barriers, bloated state, missing higher-order patterns |
-| Debuggability | Debugging: 9 Indispensable Rules | Untestable code, swallowed errors, baked-in assumptions |
-| Systems Thinking | The Linux Command Line | Unclosed resources, non-composable code, non-idempotent ops |
-| Design & Architecture | Clean Code · DDD · DDIA · GoF · PoEAA · EIP · Pragmatic | Wrong patterns, context violations, consistency bugs |
+| Lens | Source | What It Catches |
+|------|--------|----------------|
+| **Problem Correctness** | Art of Problem Solving | Wrong algorithms, broken invariants, missed boundaries |
+| **Abstraction Quality** | SICP | Leaky barriers, bloated state, missing higher-order patterns |
+| **Debuggability** | Debugging: 9 Indispensable Rules | Untestable code, swallowed errors, baked-in assumptions |
+| **Systems Thinking** | The Linux Command Line | Unclosed resources, non-composable code, non-idempotent ops |
+| **Design & Architecture** | Clean Code · DDD · DDIA · GoF · PoEAA · EIP · Pragmatic | Wrong patterns, context violations, consistency bugs |
 
-Every finding includes `file:line`, why it's wrong, and how to fix it.
+Every finding: `file:line` — what's wrong — why — how to fix it.
+
+---
 
 ### `/irondev` — Orchestrated Dev Cycle
 
-Tell it what to build. It handles the rest.
+> Tell it what to build. It handles the rest.
 
 ```
 you: "add feature X"
-       ↓
-detect default branch + create isolated worktree
-       ↓
-dev subagent — TDD + all 5 canonical rules applied during implementation
-       ↓
-review subagent — runs /irondev-review on the actual git diff
-       ↓
-fix loop — up to 2 iterations to address findings
-       ↓
-report: branch, files changed, tests added, review verdict
+        │
+        ▼
+  detect default branch + create isolated worktree
+        │
+        ▼
+  dev subagent ── TDD + all 5 canonical rules during implementation
+        │
+        ▼
+  review subagent ── runs /irondev-review on the actual git diff
+        │
+        ▼
+  fix loop ── up to 2 iterations to address findings
+        │
+        ▼
+  report: branch · files changed · tests added · review verdict
 ```
 
 You stay in the orchestrator seat. Zero implementation code written by you.
@@ -67,22 +83,15 @@ cp -r claude-irondev/irondev ~/.claude/skills/
 Open any Claude Code session in your repo:
 
 ```
-/irondev-review    # deep review of current code — 5 lenses, file:line findings
+/irondev-review    # deep review — 5 lenses, file:line findings
 /irondev           # full dev cycle — branch, implement, review, fix, report
 ```
 
 ---
 
-## Requirements
-
-- [Claude Code](https://claude.ai/code)
-- `irondev` requires Claude Code with agent dispatch support
-
----
-
 ## Knowledge Base
 
-These skills encode decades of hard-won engineering knowledge:
+These skills encode decades of hard-won engineering wisdom:
 
 | Book | Principle Applied |
 |------|------------------|
@@ -97,3 +106,11 @@ These skills encode decades of hard-won engineering knowledge:
 | *Enterprise Integration Patterns* — Hohpe & Woolf | Messaging correctness |
 | *The Pragmatic Programmer* — Thomas & Hunt | DRY on knowledge, orthogonality |
 | *Design Patterns (GoF)* — Gamma et al. | Patterns that solve real problems, not decoration |
+
+---
+
+<div align="center">
+
+Built for [Claude Code](https://claude.ai/code) · by [arielonoriaga](https://github.com/arielonoriaga)
+
+</div>
