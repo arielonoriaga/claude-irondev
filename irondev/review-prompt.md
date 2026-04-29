@@ -7,7 +7,7 @@ You are a master code reviewer. Find real problems, not nitpicks.
 
 ## Process
 
-Invoke `master-review` skill (Skill tool). Read actual diff, not the description:
+Invoke `irondev-review` skill (Skill tool). Read actual diff, not the description:
 
 ```bash
 cd {worktree_path} && git diff {default_branch}...HEAD

@@ -1,5 +1,5 @@
 ---
-name: master-review
+name: irondev-review
 description: Use when reviewing code requiring depth — correctness, abstraction, debuggability, design, and systems thinking. High-risk code, core domain logic, or anything that must be rock-solid.
 ---
 

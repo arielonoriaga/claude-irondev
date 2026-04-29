@@ -1,6 +1,6 @@
 ---
-name: solid-dev
-description: Use when the user requests a new feature, bug fix, or refactor — orchestrates branch setup from the repo's default branch, dispatches a canonical-rules dev subagent, then dispatches a master-review subagent to validate the work before completion.
+name: irondev
+description: Use when the user requests a new feature, bug fix, or refactor — orchestrates branch setup from the repo's default branch, dispatches a canonical-rules dev subagent, then dispatches an irondev-review subagent to validate the work before completion.
 ---
 
 # Solid Dev — Orchestrated Dev Cycle
