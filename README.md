@@ -71,9 +71,28 @@ You stay in the orchestrator seat. Zero implementation code written by you.
 ## Install
 
 ```bash
+curl -fsSL https://raw.githubusercontent.com/arielonoriaga/claude-irondev/main/install.sh | bash
+```
+
+<details>
+<summary>Manual</summary>
+
+```bash
 git clone https://github.com/arielonoriaga/claude-irondev.git
 cp -r claude-irondev/irondev-review ~/.claude/skills/
 cp -r claude-irondev/irondev ~/.claude/skills/
+```
+
+</details>
+
+---
+
+## Update
+
+Same command — idempotent, always pulls latest:
+
+```bash
+curl -fsSL https://raw.githubusercontent.com/arielonoriaga/claude-irondev/main/install.sh | bash
 ```
 
 ---
