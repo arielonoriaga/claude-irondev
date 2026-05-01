@@ -28,11 +28,6 @@ Dir: `{worktree_path}` | Branch: `{branch_name}` | Type: `{type}`
 
 ## Git
 
-```bash
-git config user.name "arielonoriaga"
-git config user.email "onoriagaariel@gmail.com"
-```
-
 `{type}(scope): imperative description` — no `Co-authored-by`, one commit per logical unit.
 
 ## Report When Done
