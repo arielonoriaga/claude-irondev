@@ -71,16 +71,25 @@ You stay in the orchestrator seat. Zero implementation code written by you.
 ## Install
 
 ```bash
+npx skills add -g arielonoriaga/claude-irondev
+```
+
+<details>
+<summary>curl (no Node required)</summary>
+
+```bash
 curl -fsSL https://raw.githubusercontent.com/arielonoriaga/claude-irondev/main/install.sh | bash
 ```
+
+</details>
 
 <details>
 <summary>Manual</summary>
 
 ```bash
 git clone https://github.com/arielonoriaga/claude-irondev.git
-cp -r claude-irondev/irondev-review ~/.claude/skills/
-cp -r claude-irondev/irondev ~/.claude/skills/
+cp -r claude-irondev/skills/irondev-review ~/.claude/skills/
+cp -r claude-irondev/skills/irondev ~/.claude/skills/
 ```
 
 </details>
@@ -89,7 +98,11 @@ cp -r claude-irondev/irondev ~/.claude/skills/
 
 ## Update
 
-Same command — idempotent, always pulls latest:
+```bash
+npx skills add -g arielonoriaga/claude-irondev
+```
+
+Or via curl — same command, always idempotent:
 
 ```bash
 curl -fsSL https://raw.githubusercontent.com/arielonoriaga/claude-irondev/main/install.sh | bash
