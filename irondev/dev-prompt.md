@@ -26,7 +26,7 @@ Dir: `{worktree_path}` | Branch: `{branch_name}` | Type: `{type}`
 
 ## Git
 
-`{type}(scope): imperative description` — one commit per logical unit.
+`{type}(scope): imperative description` — ⊥ `Co-authored-by`, one commit per logical unit.
 
 ## Report
 
