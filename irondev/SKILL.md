@@ -1,22 +1,22 @@
 ---
 name: irondev
-description: Use when the user requests a new feature, bug fix, or refactor — orchestrates branch setup from the repo's default branch, dispatches a canonical-rules dev subagent, then dispatches an irondev-review subagent to validate the work before completion.
+description: Use when user requests feat, fix, or refactor — orchestrates branch setup from repo's default branch, dispatches canonical-rules dev subagent, then dispatches irondev-review subagent to validate before completion.
 ---
 
-# Solid Dev — Orchestrated Dev Cycle
+# Irondev — Orchestrated Dev Cycle
 
-You are the **orchestrator**. Never write code — dispatch subagents, synthesize results.
+Orchestrator. ⊥ write code. Dispatch subagents, synthesize results.
 
-**Flow:** detect branch → worktree → dev subagent → review subagent → fix loop → report
+**Flow:** parse → detect branch → worktree → dev agent → review agent → fix loop → report
 
-## Step 1 — Parse
+## §1 Parse
 
-- **Type:** `feat` / `fix` / `refactor` / `chore`
+- **Type:** `feat` | `fix` | `refactor` | `chore`
 - **Scope:** module/domain (`auth`, `api`, `ui`)
 - **Branch:** `{type}/{scope}-{short-desc}` (kebab-case)
-- **Description:** full spec for dev subagent
+- **Desc:** full spec → dev subagent
 
-## Step 2 — Detect Default Branch + Setup
+## §2 Detect Default Branch
 
 ```bash
 # Preferred
@@ -27,36 +27,36 @@ git remote show origin 2>/dev/null | awk '/HEAD branch/ {print $NF}'
 git branch -a | grep -Eo '(main|master|trunk|develop)' | head -1
 ```
 
-Record `default_branch`. Use `superpowers:using-git-worktrees` to pull it and create worktree on new branch. Record `worktree_path`.
+Record `default_branch`. Use `superpowers:using-git-worktrees` → pull & create worktree on new branch. Record `worktree_path`.
 
-## Step 3 — Dev Subagent
+## §3 Dev Subagent
 
-Spawn `general-purpose` with `./dev-prompt.md`. Substitute: `{task_description}`, `{branch_name}`, `{worktree_path}`, `{type}`. Wait for summary.
+Spawn `general-purpose` w/ `./dev-prompt.md`. Substitute: `{task_description}`, `{branch_name}`, `{worktree_path}`, `{type}`. Wait → summary.
 
-## Step 4 — Review Subagent
+## §4 Review Subagent
 
-Spawn `general-purpose` with `./review-prompt.md`. Substitute: `{dev_summary}`, `{worktree_path}`, `{branch_name}`, `{default_branch}`. Wait for report.
+Spawn `general-purpose` w/ `./review-prompt.md`. Substitute: `{dev_summary}`, `{worktree_path}`, `{branch_name}`, `{default_branch}`. Wait → report.
 
-## Step 5 — Fix Loop
+## §5 Fix Loop
 
-Issues found? → re-dispatch dev subagent with findings → re-dispatch review subagent.
-Cap: 2 iterations. Still issues after cap → surface to user, stop looping.
+Issues found → re-dispatch dev subagent w/ findings → re-dispatch review subagent.
+Cap ≤ 2 iterations. Still issues after cap → surface to user, stop.
 
-## Step 6 — Report
+## §6 Report
 
 ```
-## Solid Dev — Done
+## Irondev — Done
 
 Branch: {branch_name} ({type})
 Files changed: [list]
 Tests added: [list]
-Review: pass / issues found and fixed
+Review: pass | issues found & fixed
 Strengths: [from review]
 ```
 
-## Rules
+## V-Rules
 
-- Orchestrator writes zero code
-- Never skip review — even if dev says perfect
-- Cap fix loop at 2 — don't loop forever
-- Each subagent gets only what it needs, no session history
+V1: orchestrator ⊥ write code
+V2: ⊥ skip review — even dev says perfect
+V3: fix loop cap ≤ 2
+V4: ∀ subagent → only what it needs, ⊥ session history
