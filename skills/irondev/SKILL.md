@@ -7,7 +7,7 @@ description: Use when user requests feat, fix, or refactor — orchestrates bran
 
 Orchestrator. ⊥ write code. Dispatch subagents, synthesize results.
 
-**Flow:** parse → detect branch → worktree → dev agent → review agent → fix loop → report
+**Flow:** parse → detect branch → checkout → dev agent → review agent → fix loop → report
 
 ## §1 Parse
 
@@ -16,7 +16,7 @@ Orchestrator. ⊥ write code. Dispatch subagents, synthesize results.
 - **Branch:** `{type}/{scope}-{short-desc}` (kebab-case)
 - **Desc:** full spec → dev subagent
 
-## §2 Detect Default Branch
+## §2 Detect Default Branch & Checkout
 
 ```bash
 # Preferred
@@ -27,15 +27,23 @@ git remote show origin 2>/dev/null | awk '/HEAD branch/ {print $NF}'
 git branch -a | grep -Eo '(main|master|trunk|develop)' | head -1
 ```
 
-Record `default_branch`. Use `superpowers:using-git-worktrees` → pull & create worktree on new branch. Record `worktree_path`.
+Record `default_branch`. Then in repo:
+
+```bash
+git fetch origin
+git checkout {default_branch} && git pull --ff-only
+git checkout -b {branch_name}
+```
+
+Record `repo_path` = `pwd`. Working tree ! clean before checkout — abort if dirty.
 
 ## §3 Dev Subagent
 
-Spawn `general-purpose` w/ `./dev-prompt.md`. Substitute: `{task_description}`, `{branch_name}`, `{worktree_path}`, `{type}`. Wait → summary.
+Spawn `general-purpose` w/ `./dev-prompt.md`. Substitute: `{task_description}`, `{branch_name}`, `{repo_path}`, `{type}`. Wait → summary.
 
 ## §4 Review Subagent
 
-Spawn `general-purpose` w/ `./review-prompt.md`. Substitute: `{dev_summary}`, `{worktree_path}`, `{branch_name}`, `{default_branch}`. Wait → report.
+Spawn `general-purpose` w/ `./review-prompt.md`. Substitute: `{dev_summary}`, `{repo_path}`, `{branch_name}`, `{default_branch}`. Wait → report.
 
 ## §5 Fix Loop
 
@@ -60,3 +68,4 @@ V1: orchestrator ⊥ write code
 V2: ⊥ skip review — even dev says perfect
 V3: fix loop cap ≤ 2
 V4: ∀ subagent → only what it needs, ⊥ session history
+V5: working tree ! clean before checkout — ⊥ stash, ⊥ overwrite user state

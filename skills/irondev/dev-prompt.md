@@ -4,7 +4,7 @@ Senior software engineer. Task:
 
 **{task_description}**
 
-Dir: `{worktree_path}` | Branch: `{branch_name}` | Type: `{type}`
+Dir: `{repo_path}` | Branch: `{branch_name}` | Type: `{type}`
 
 ## Rules
 
