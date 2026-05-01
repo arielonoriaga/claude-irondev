@@ -3,62 +3,46 @@ name: irondev-review
 description: Use when reviewing code requiring depth — correctness, abstraction, debuggability, design, and systems thinking. High-risk code, core domain logic, or anything that must be rock-solid.
 ---
 
-# Irondev Review — Master Code Review
+# Irondev Review
 
-5 sequential lenses. Each catches what others miss. ⊥ collapse — SICP smell ≠ debug smell.
-
-V1: summarize what code does before judging it.
+5 sequential lenses. ⊥ collapse. V1: summarize before judging.
 
 ## L1 — Correctness (AoPS)
 
-- **Decomposition:** clean sub-problems | tangled blob?
-- **Invariants:** ∀ code path preserve what must hold?
-- **Boundaries:** empty, null, zero, max, overflow, concurrent
-- **Proof sketch:** informally prove algo correct before trusting
-- **Edge cases:** theorems to verify, ⊥ afterthoughts
+- Decompose cleanly. ∀ code path preserve invariants.
+- Boundaries: empty, null, zero, max, overflow, concurrent.
+- Prove algo correct. Edge cases = theorems, ⊥ afterthoughts.
 
-Flags: off-by-one, unchecked shape assumptions, ⊥ base case
+Flags: off-by-one, `doX(true)` bool param, magic number, ⊥ base case, deep if-else (⊥ guard clauses)
 
 ## L2 — Abstraction (SICP)
 
-- **Barriers:** caller knows impl details it shouldn't?
-- **State:** mutable state explicit, minimal, co-located?
-- **Fns:** capture one nameable idea?
-- **Data:** encapsulated | raw-leaked to callers?
-- **Higher-order:** repeated structure → map/filter/fold?
-- **Proportionality:** simple problem = simple code. complex code → simple problem = wrong level
+- ⊥ barrier leaks. Fns = one nameable idea. Complexity ∝ problem.
+- Repeated structure → map/filter/fold. Mutable state minimal & co-located.
 
-Flags: "and then also" fns, bool-flag behavior selectors, raw data passing
+Flags: "and then also" fns, bool-flag selectors, raw data passing, setup+process+cleanup as 1 fn, repeated variants (⊥ higher-order)
 
-## L3 — Debuggability (Agans' 9 Rules)
+## L3 — Debuggability (Agans)
 
-- **Understandability:** fresh reader reconstructs intent from code alone?
-- **Reproducibility:** behavior-affecting state observable & isolatable?
-- **Observability:** errors surface w/ context? state changes logged?
-- **Assumptions:** ∀ implicit assumption = future bug
-- **Coupling:** one change → 5 silent breaks?
-- **Testability:** make fail deterministically?
+- Fresh reader reconstructs intent. ∀ implicit assumption = future bug.
+- Errors surface w/ context. State changes observable. One change ⊥ 5 silent breaks.
 
-Flags: `catch (e) {}`, magic state changes, assumptions baked silently
+Flags: `catch (e) {}`, `setTimeout` for sync ops, magic state changes
 
 ## L4 — Systems (Unix)
 
-- **Resources:** ∀ open must close — `using`/`defer`/`with`/`try-with-resources`
-- **I/O:** buffering, flushing, encoding, backpressure
-- **Composability:** ⊥ hidden global-state side effects
-- **Exit contract:** errors propagate; success → defined shape
-- **Idempotency:** retry-safe? twice-safe?
+- ∀ open must close (`using`/`defer`/`with`). ⊥ hidden global state.
+- Errors propagate. Success → defined shape. Idempotent where relevant.
 
-Flags: global mutation, unclosed resources, error swallowing at boundary
+Flags: global mutation, unclosed resources, error swallowing, shared global coupling
 
 ## L5 — Design (Canon)
 
 | Ref | Check |
 |-----|-------|
-| Clean Code | names reveal intent. fns ≤ 20 lines. one abstraction level. ⊥ output args |
+| Clean Code | names reveal intent. fns ≤ 20 lines. ⊥ output args |
 | GoF | pattern solves real problem, ⊥ decoration |
 | DDD | ubiquitous lang. bounded context. ⊥ cross-domain imports |
-| PoEAA | right data access pattern for scale |
 | DDIA | consistency guarantees match req. ⊥ accidental eventual consistency |
 | EIP | right messaging pattern. ⊥ polling where events fit |
 | Pragmatic | DRY on knowledge. orthogonal. ⊥ broken windows |
@@ -87,26 +71,9 @@ Flags: global mutation, unclosed resources, error swallowing at boundary
 - [specific, ⊥ generic]
 ```
 
-## Quick Findings
-
-| Smell | Lens | Verdict |
-|-------|------|---------|
-| `doX(true)` bool param | SICP | split → 2 named fns |
-| `catch (e) { log(e) }` | 9 Rules | swallowed, ⊥ recovery |
-| magic number in algo | AoPS | ⊥ boundary proof |
-| repo doing biz logic | DDD | bounded context breach |
-| shared mutable state | DDIA | race condition |
-| `setTimeout` for sync | 9 Rules | race disguised as timing |
-| setup+process+cleanup fn | SICP | 3 fns as 1 |
-| cross-domain import | DDD | context breach |
-| open ⊥ `finally` | Unix | leak on error path |
-| deep if-else nesting | AoPS | ⊥ guard clauses |
-| repeated structure variants | SICP | ⊥ higher-order |
-| shared global coupling | Unix | ⊥ composable |
-
 ## V-Rules
 
-V1: ⊥ skip lens — each sees what others miss
+V1: ⊥ skip lens
 V2: separate lenses, separate passes
 V3: strengths ! — ⊥ found = code ⊥ understood
-V4: fix root causes ⊥ symptoms — 5 leaf-patches = 1 root fix needed
+V4: root fix > 5 leaf patches
