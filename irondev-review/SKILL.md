@@ -7,6 +7,10 @@ description: Use when reviewing code requiring depth — correctness, abstractio
 
 5 sequential lenses. ⊥ collapse. V1: summarize before judging.
 
+**Think Anywhere:** ambiguous finding mid-review → stop, reason before reporting.
+Triggers: subtle invariant breach, unclear blast radius, competing lens signals, "feels wrong" w/o clear cause.
+Reason: what breaks? ∀ callers affected? root cause or symptom? Then report.
+
 ## L1 — Correctness (AoPS)
 
 - Decompose cleanly. ∀ code path preserve invariants.
