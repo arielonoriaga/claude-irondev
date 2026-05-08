@@ -4,12 +4,12 @@
 
 **Stop shipping code that breaks under pressure.**
 
-Two [Claude Code](https://claude.ai/code) skills that encode 11 foundational engineering books into your dev workflow —
-master-level code review and a fully orchestrated, self-reviewing dev cycle.
+Two [Claude Code](https://claude.ai/code) skills that encode foundational engineering wisdom into your dev workflow —
+adversarial master-level code review and a fully orchestrated, self-reviewing dev cycle.
 
 [![Claude Code](https://img.shields.io/badge/Claude%20Code-compatible-black?logo=anthropic&logoColor=white)](https://claude.ai/code)
 [![Skills](https://img.shields.io/badge/skills-2-blue)](#whats-inside)
-[![Books](https://img.shields.io/badge/knowledge%20base-11%20books-orange)](#knowledge-base)
+[![Books](https://img.shields.io/badge/knowledge%20base-15%20books-orange)](#knowledge-base)
 
 </div>
 
@@ -25,19 +25,20 @@ Most AI-generated code passes the happy path and fails everything else — broke
 
 ## What's Inside
 
-### `/irondev-review` — 5-Lens Code Review
+### `/irondev-review` — 6-Lens Adversarial Code Review
 
-> Not a linter. Not a style check. A systematic review through five lenses that each catch different failure modes.
+> Not a linter. Not a style check. A systematic review through six lenses — starts with a hostile **devil's advocate** pass that attacks every premise before any other check runs.
 
 | Lens | Source | What It Catches |
 |------|--------|----------------|
-| **Problem Correctness** | Art of Problem Solving | Wrong algorithms, broken invariants, missed boundaries |
-| **Abstraction Quality** | SICP | Leaky barriers, bloated state, missing higher-order patterns |
-| **Debuggability** | Debugging: 9 Indispensable Rules | Untestable code, swallowed errors, baked-in assumptions |
-| **Systems Thinking** | The Linux Command Line | Unclosed resources, non-composable code, non-idempotent ops |
-| **Design & Architecture** | Clean Code · DDD · DDIA · GoF · PoEAA · EIP · Pragmatic | Wrong patterns, context violations, consistency bugs |
+| **L0 Devil's Advocate** | Hyrum's Law · Chesterton's Fence · YAGNI · reversibility analysis | Unjustified novelty, cargo-cult "best practice", premature abstraction, irreversible change without rationale, removed safeguards |
+| **L1 Correctness** | Art of Problem Solving | Off-by-one, overflow, TOCTOU, race conditions, NaN propagation, broken invariants, missed boundaries |
+| **L2 Abstraction** | SICP · Hickey (Simple Made Easy) · Ousterhout (PoSD) | Leaky barriers, shallow modules, premature DRY, primitive obsession, god objects, speculative generics |
+| **L3 Debuggability** | Debugging: 9 Indispensable Rules (Agans) | Silent failure, lost stack traces, error-without-context, log-and-continue, untestable code |
+| **L4 Systems** | Unix philosophy · Postel's Law · CAP · end-to-end principle | Resource leaks, retry storms, thundering herd, split-brain, missing timeouts, unsynchronized shared state |
+| **L5 Design** | Clean Code · DDD · DDIA · GoF · PoEAA · EIP · Pragmatic · Refactoring (Fowler) · Domain Modeling Made Functional (Wlaschin) | Anemic models, distributed monoliths, pattern-as-decoration, framework leaking into domain, illegal states representable |
 
-Every finding: `file:line` — what's wrong — why — how to fix it.
+Every critical finding must survive a **steelman counter-argument** before it's reported. Every finding: `file:line` — what's wrong — why — how to fix it. Style preferences are labeled honestly, not disguised as defects.
 
 ---
 
@@ -138,6 +139,12 @@ These skills encode decades of hard-won engineering wisdom:
 | *Enterprise Integration Patterns* — Hohpe & Woolf | Messaging correctness |
 | *The Pragmatic Programmer* — Thomas & Hunt | DRY on knowledge, orthogonality |
 | *Design Patterns (GoF)* — Gamma et al. | Patterns that solve real problems, not decoration |
+| *A Philosophy of Software Design* — Ousterhout | Deep modules, complexity as cost, strategic vs tactical |
+| *Simple Made Easy* — Hickey | Untangling > familiarity, complecting as design sin |
+| *Refactoring* — Fowler | Named refactorings, code smell catalog |
+| *Domain Modeling Made Functional* — Wlaschin | Make illegal states unrepresentable, types as proofs |
+
+Plus engineering laws applied throughout: **Hyrum's Law** (all observable behavior is contract), **Chesterton's Fence** (don't remove what you don't understand), **Postel's Law** (carefully), **CAP** theorem, **end-to-end principle**, **YAGNI**, and the **9 Debugging Rules**.
 
 ---
 
