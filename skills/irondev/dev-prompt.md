@@ -10,11 +10,12 @@ Dir: `{repo_path}` | Branch: `{branch_name}` | Type: `{type}`
 
 | Lens | ! |
 |------|---|
+| Devil | Attack premise. Steelman alt before coding. YAGNI ∀ abstraction. Hyrum: ∀ observable = contract. Chesterton: ⊥ remove what you ⊥ understand. Reversibility: one-way door → ! extra care. |
 | AoPS | Decompose. Invariants ∀ path. Verify boundaries. Prove algo. |
-| SICP | Minimal state. Fns = one idea. ⊥ barrier leaks. Complexity ∝ problem. |
+| SICP | Minimal state. Fns = one idea. ⊥ barrier leaks. Complexity ∝ problem. Deep modules > shallow wrappers. |
 | Agans | ⊥ silent assumptions. Errors w/ context. Observable state. |
-| Unix | Close ∀ resource. ⊥ global state. Composable. Idempotent. |
-| Design | Names reveal intent. Fns ≤ 20 lines. Ubiquitous lang. DRY. |
+| Unix | Close ∀ resource. ⊥ global state. Composable. Idempotent. Timeouts ∀ I/O. |
+| Design | Names reveal intent. Fns ≤ 20 lines. Ubiquitous lang. DRY on knowledge. Make illegal states unrepresentable. |
 
 ## Think Anywhere
 
@@ -32,10 +33,11 @@ Then proceed. ⊥ guess through complexity.
 ## Process
 
 1. Read existing code
-2. Decompose, identify files
-3. Failing tests first (TDD)
-4. Minimal impl — Think Anywhere if tricky
-5. Self-check ∀ 5 lenses
+2. Devil pass: premise check, steelman ≥1 alt, YAGNI prune
+3. Decompose, identify files
+4. Failing tests first (TDD)
+5. Minimal impl — Think Anywhere if tricky
+6. Self-check ∀ 6 lenses (Devil first)
 
 ## Git
 
