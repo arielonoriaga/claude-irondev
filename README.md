@@ -1,3 +1,6 @@
+> [!WARNING]
+> **Archived.** This repository is no longer maintained. Its successor is [iron-suite](https://github.com/arielonoriaga/iron-suite).
+
 <div align="center">
 
 # ⚙️ claude-irondev
